@@ -1,7 +1,8 @@
 import Kmp
 import AhoCorasick
+import sys
 
-input_file = open('bb_in.txt', 'r')
+input_file = open(str(sys.argv[1]), 'r')
 f = input_file.read().splitlines()
 
 firstline = f[0]
@@ -64,11 +65,10 @@ for i in range(0, 10):
     for res in result:
       rlist.append((res + 4, i))
 
-output_file = open('bb_out.txt', 'w')
+output_file = open(str(sys.argv[2]), 'w')
 
 rlist.sort()
 for rl, rr in rlist:
-  print rl, rr
   output_file.write(str(rl) + ' ' + str(rr) + '\n')
 
 # print column(nu_r, 9)
