@@ -58,7 +58,7 @@ def aho_find_all(s, root, callback, pdict):
 def on_occurence(pos, patterns, pnum):
   print "At pos %s found pattern: %s:%s" % (pos, patterns, pnum)
 
-#patterns = ['aabba', 'aaabb', 'ababa']
-#s = "aabbaaabba"
-#root = aho_create_statemachine(patterns)
-#aho_find_all(s, root, on_occurence)
+# patterns = ['aabba', 'aaabb', 'ababa']
+# s = "aabbaaabba"
+# root = aho_create_statemachine(patterns)
+# aho_find_all(s, root, on_occurence)

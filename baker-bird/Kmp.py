@@ -24,6 +24,6 @@ class KMP:
 
     return ret
 
-kmp1 = KMP()
-result = kmp1.search(['a','a','b','a','b','a','b','b','c','a','b','a','b','b','a','c','a'], ['c','a'])
-for p in result: print p
+# kmp1 = KMP()
+# result = kmp1.search(['a','a','b','a','b','a','b','b','c','a','b','a','b','b','a','c','a'], ['c','a'])
+# for p in result: print p
