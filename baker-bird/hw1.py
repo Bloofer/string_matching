@@ -36,21 +36,14 @@ patterns = nu_pattern.keys()
 R = list()
 
 for txt in text:
-  root = AhoCorasick.aho_create_statemachine(patterns)
-  R.append(AhoCorasick.aho_find_all(txt, root, AhoCorasick.on_occurence, nu_pattern))
+  root = AhoCorasick.add_trie_ff(patterns)
+  R.append(AhoCorasick.find_pattern(txt, root, nu_pattern))
 
 nu_r = [[0 for x in range(t_size)] for y in range(t_size)] 
 
 for index, r in enumerate(R):
   for idx, ptn in r:
     nu_r[index][idx + len(pattern[0]) - 1] = ptn
-
-"""
-for i in range(0,9):
-  for j in range(0,10):
-    print nu_r[i][j],
-  print '\n'
-"""
 
 # KMP
 
@@ -70,7 +63,4 @@ output_file = open(str(sys.argv[2]), 'w')
 rlist.sort()
 for rl, rr in rlist:
   output_file.write(str(rl) + ' ' + str(rr) + '\n')
-
-# print column(nu_r, 9)
-
 

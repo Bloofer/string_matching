@@ -1,22 +1,21 @@
-class AhoNode:
+class TrieNode:
     def __init__(self):
         self.goto = {}
         self.out = []
         self.fail = None
  
-def aho_create_forest(patterns):
-    root = AhoNode()
+def make_trie(patterns):
+    root = TrieNode()
  
     for path in patterns:
         node = root
         for symbol in path:
-            node = node.goto.setdefault(symbol, AhoNode())
+            node = node.goto.setdefault(symbol, TrieNode())
         node.out.append(path)
     return root
  
- 
-def aho_create_statemachine(patterns):
-    root = aho_create_forest(patterns)
+def add_trie_ff(patterns):
+    root = make_trie(patterns)
     queue = []
     for node in root.goto.itervalues():
         queue.append(node)
@@ -34,9 +33,8 @@ def aho_create_statemachine(patterns):
             unode.out += unode.fail.out
  
     return root
- 
- 
-def aho_find_all(s, root, callback, pdict):
+  
+def find_pattern(s, root, pdict):
     node = root
     r = list()
 
@@ -48,17 +46,6 @@ def aho_find_all(s, root, callback, pdict):
             continue
         node = node.goto[s[i]]
         for pattern in node.out:
-            #callback(i - len(pattern) + 1, pattern, pdict[pattern])
             r.append((i - len(pattern) + 1, pdict[pattern]))
 
     return r
-
-############################
-# Demonstration of work
-def on_occurence(pos, patterns, pnum):
-  print "At pos %s found pattern: %s:%s" % (pos, patterns, pnum)
-
-# patterns = ['aabba', 'aaabb', 'ababa']
-# s = "aabbaaabba"
-# root = aho_create_statemachine(patterns)
-# aho_find_all(s, root, on_occurence)
