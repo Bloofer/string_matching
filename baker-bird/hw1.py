@@ -39,7 +39,7 @@ for txt in text:
   root = AhoCorasick.aho_create_statemachine(patterns)
   R.append(AhoCorasick.aho_find_all(txt, root, AhoCorasick.on_occurence, nu_pattern))
 
-nu_r = [[0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0], [0, 0, 0, 0 ,0, 0, 0, 0, 0, 0]]
+nu_r = [[0 for x in range(t_size)] for y in range(t_size)] 
 
 for index, r in enumerate(R):
   for idx, ptn in r:
@@ -59,11 +59,11 @@ def column(matrix, i):
 
 rlist = list()
 
-for i in range(0, 10):
+for i in range(0, t_size):
   result = Kmp.KMP().search(column(nu_r, i), p_num)
   if len(result) != 0:
     for res in result:
-      rlist.append((res + 4, i))
+      rlist.append((res + p_size - 1, i))
 
 output_file = open(str(sys.argv[2]), 'w')
 
