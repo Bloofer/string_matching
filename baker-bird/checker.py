@@ -1,8 +1,10 @@
+# The checker seeks pattern in text with naive algorithm
+
 import sys
 
+# opens input file and reads text & pattern
 input_file = open(str(sys.argv[1]), 'r')
 f = input_file.read().splitlines()
-
 firstline = f[0]
 p_size = int(firstline.split()[0])
 t_size = int(firstline.split()[1])
@@ -10,13 +12,11 @@ t_size = int(firstline.split()[1])
 pattern = list()
 for p_line in range(1, 1 + p_size):
   pattern.append(f[p_line])
-
 text = list()
 for t_line in range(1 + p_size, 1 + p_size + t_size):
   text.append(f[t_line])
 
-# The checker seeks pattern in text with naive algorithm
-
+# checks pattern in text with brute force method
 def check_pattern(p, q):
   p_i = 0
   p_j = 0
@@ -43,6 +43,7 @@ output_file = open(str(sys.argv[3]), 'w')
 
 rlist.sort()
 
+# checker checks whether the output which 'hw1.py' have created is right or wrong
 if rlist == o:
   output_file.write('yes')
 else:

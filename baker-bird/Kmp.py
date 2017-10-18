@@ -1,4 +1,5 @@
 class KMP:
+  # calcuates prefix function
   def prefix(self, pattern):
     ret = [0]
 
@@ -9,6 +10,7 @@ class KMP:
       ret.append(j + 1 if pattern[j] == pattern[i] else j)
     return ret
 
+  # main pattern matching procedure for KMP algorithm
   def search(self, T, P):
     prefix, ret, j = self.prefix(P), [], 0
 

@@ -1,9 +1,11 @@
+# Aho-Corasick TRIE class
 class TrieNode:
     def __init__(self):
         self.goto = {}
         self.out = []
         self.fail = None
- 
+
+# make TRIE with multiple patterns
 def make_trie(patterns):
     root = TrieNode()
  
@@ -13,7 +15,8 @@ def make_trie(patterns):
             node = node.goto.setdefault(symbol, TrieNode())
         node.out.append(path)
     return root
- 
+
+# calculate failure function & add fail info to TRIE
 def add_trie_ff(patterns):
     root = make_trie(patterns)
     queue = []
@@ -34,6 +37,7 @@ def add_trie_ff(patterns):
  
     return root
   
+# main procedure for pattern matching in Aho-Corasick algorithm
 def find_pattern(s, root, pdict):
     node = root
     r = list()
